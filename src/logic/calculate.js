@@ -21,7 +21,6 @@ function findClosingBracket(s) {
     return -1
 }
 
-
 function hasParenthese(s) {
     for (let i = 0; i < s.length; i++) {
         if (s[i] === "(" || s[i] === ")") {
@@ -57,8 +56,6 @@ function hasAddition(s) {
     }
     return false
 }
-
-
 
 // Assume there is no bracket in s. This function calculate all the power operator in s
 function removePower(s) {
@@ -139,6 +136,6 @@ function removeParenthese(s) {
     }
 }
 
-
-
-console.log(removeParenthese("2*(3+4^2)/3-6"))
+module.exports = {
+    removeParenthese
+}

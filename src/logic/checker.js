@@ -106,8 +106,8 @@ function isCorrectForm(s) {
 isCorrectForm("2+(3*4)")
 
 module.exports = {
-    isCorrectForm: isCorrectForm,
-    isOperator: isOperator,
-    before: before,
-    after: after,
+    isCorrectForm,
+    isOperator,
+    before,
+    after,
 }
