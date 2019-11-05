@@ -20,9 +20,10 @@ function App() {
     }
 
     function enterCalculate() {
-        const result = caculate.removeParenthese(formula);
-        console.log('result :', result);
-        setHistory([...history, formula + " = " + result]);
+        let removeWhiteSpaceRegex = new RegExp("\\s","g")
+        let s = formula.replace(removeWhiteSpaceRegex, "")
+        const result = caculate.removeParenthese(s);
+        setHistory([...history, s + " = " + result]);
         setFormula("");
     }
 
@@ -77,7 +78,7 @@ function App() {
                             <Button type="default" onClick={() => addCharacter("-")} block>-</Button>
                         </Col>
                         <Col span={4}>
-                            <Button type="default" block>SR</Button>
+                            <Button type="default" onClick={() => addCharacter("r")} block>SR</Button>
                         </Col>
                         <Col span={4}>
                             <Button type="default" block>Empty</Button>

@@ -110,8 +110,6 @@ function isCorrectForm(s) {
     }
 }
 
-console.log(isCorrectForm("+"))
-
 module.exports = {
     isCorrectForm,
     isOperator,

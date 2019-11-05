@@ -127,6 +127,7 @@ function removeAddition(s) {
 
 function removeParenthese(s) {
     try {
+
         for (let i = 0; i < s.length; i++) {
             if(s[i] === "-" && !isOperator(s[i-1])){
                 s = s.slice(0,i) + "+" + s.slice(i)
@@ -154,7 +155,7 @@ function removeParenthese(s) {
         return err
     }
 }
-console.log(removeParenthese("r2"))
+
 module.exports = {
     removeParenthese
 }
