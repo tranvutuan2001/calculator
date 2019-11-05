@@ -29,7 +29,14 @@ function hasParenthese(s) {
     }
     return false
 }
-
+function hasSquareRoot(s){
+    for (let i = 0; i < s.length; i++) {
+        if (s[i] === "r") {
+            return true
+        }
+    }
+    return false
+}
 function hasPower(s) {
     for (let i = 0; i < s.length; i++) {
         if (s[i] === "^") {
@@ -71,7 +78,18 @@ function removePower(s) {
     }
     return s
 }
-
+function removeSquareRoot(s){
+    while (hasSquareRoot(s)) {
+        for (let i = 0; i < s.length; i++) {
+            if (s[i] === "r") {
+                let a = after(s, i)
+                let x = Math.pow(parseFloat(s.slice(i + 1, a)), 0.5)
+                s = s.slice(0, i) + x.toString() + s.slice(a)
+            }
+        }
+    }
+    return s
+}
 // Assume there is no bracket, and no power in s. This function calculate all the multiply and division operator in s
 function removeMultiply(s) {
     while (hasMultiply(s)) {
@@ -128,6 +146,7 @@ function removeParenthese(s) {
             }
         }
         s = removePower(s)
+        s = removeSquareRoot(s)
         s = removeMultiply(s)
         s = removeAddition(s)
         return s
@@ -135,7 +154,7 @@ function removeParenthese(s) {
         return err
     }
 }
-
+console.log(removeParenthese("r2"))
 module.exports = {
     removeParenthese
 }

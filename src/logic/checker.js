@@ -64,7 +64,7 @@ function isNumber(n) {
 }
 
 function isOperator(symbol) {
-    return (symbol === "*" || symbol === "+" || symbol === "/" || symbol === "^")
+    return (symbol === "*" || symbol === "+" || symbol === "/" || symbol === "^" || symbol === "r")
 }
 
 function isCorrectForm(s) {
@@ -72,12 +72,14 @@ function isCorrectForm(s) {
         if (!isCorrectParenthese(s)) {
             throw new Error("Wrong parenthese format")
         }
+        let hasOperator = false
         for (let i = 0; i < s.length; i++) {
             if (isOperator(s[i])) {
+                hasOperator = true
                 let b = before(s, i)
                 let a = after(s, i)
                 if (b === i - 1) {
-                    if (s[b] !== ")") {
+                    if (s[b] !== ")" && s[i] !== "r") {
                         throw new Error("Wrong operator format 1")
                     }
                 } else {
@@ -85,8 +87,8 @@ function isCorrectForm(s) {
                         throw new Error("Wrong operator format 3")
                     }
                 }
-                if (a === i + 1) {
-                    if (s[a] !== "(") {
+                if (a === i + 1 ) {
+                    if (s[a] !== "(" &&  s[a] !== "r") {
                         throw new Error("Wrong operator format 2")
                     }
                 } else {
@@ -96,6 +98,11 @@ function isCorrectForm(s) {
                 }
             }
         }
+        if(!hasOperator){
+            if(!isNumber(s.slice(0))){
+                throw new Error("Not a number")
+            }
+        }
         return true
     } catch (err) {
         console.log(err)
@@ -103,7 +110,7 @@ function isCorrectForm(s) {
     }
 }
 
-isCorrectForm("2+(3*4)")
+console.log(isCorrectForm("+"))
 
 module.exports = {
     isCorrectForm,
